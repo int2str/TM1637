@@ -256,3 +256,9 @@ void TM1637::setDots(const uint8_t mask)
 {
     _dotMask = mask;
 }
+
+void TM1637::setBrightness(const uint8_t brightness)
+{
+    send_cmd(TM_DISP_CTRL | TM_DISP_ENABLE | (brightness & TM_DISP_PWM_MASK));
+}
+

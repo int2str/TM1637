@@ -102,6 +102,9 @@ public:
     // Mask is mapped right to left (ex. 0x01 = right-most dot)
     void setDots(const uint8_t mask);
 
+    // Set the brightness between 0 and 7
+    void setBrightness(const uint8_t brightness);
+
 protected:
     uint8_t _dotMask;
 };
