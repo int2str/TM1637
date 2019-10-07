@@ -174,20 +174,22 @@ void TM1637::setNumber(uint32_t number, uint8_t offset, const uint8_t align)
     if (align == TM_LEFT)
         offset += offset_digits(number);
 
-    while (number && offset != 0xFF)
+    do
     {
         setDigit(offset--, number % 10);
         number /= 10;
     }
+    while (number && offset != 0xFF);
 }
 
 void TM1637::setNumberPad(uint32_t number, uint8_t offset, uint8_t width, const uint8_t pad)
 {
-    while (number && width-- && offset != 0xFF)
+    do
     {
         setDigit(offset--, number % 10);
         number /= 10;
     }
+    while (number && width-- && offset != 0xFF);
 
     while (width -- && offset != 0xFF)
         setByte(offset--, pad);
@@ -195,11 +197,12 @@ void TM1637::setNumberPad(uint32_t number, uint8_t offset, uint8_t width, const 
 
 void TM1637::setNumberHex(uint32_t number, uint8_t offset, uint8_t width, const uint8_t pad)
 {
-    while (number && width-- && offset != 0xFF)
+    do
     {
         setDigit(offset--, number & 0x0F);
         number >>= 4;
     }
+    while (number && width-- && offset != 0xFF);
 
     while (width -- && offset != 0xFF)
         setByte(offset--, pad);
